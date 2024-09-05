@@ -1,0 +1,12 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Organizadores</title>
+</head>
+<body>
+    <h1>Agregar Organizadores</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
