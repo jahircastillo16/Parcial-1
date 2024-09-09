@@ -2,7 +2,11 @@ from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Organizador, Evento
+from django.views.generic import UpdateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import render
+
 
 class OrganizadorListView(ListView):
     model = Organizador
@@ -37,3 +41,8 @@ class EventoCreateView(LoginRequiredMixin, CreateView):
 
 def home(request):
     return render(request, 'eventos/home.html')
+class EventoUpdateView(UpdateView):
+    model = Evento
+    fields = ['nombre', 'fecha', 'organizador']
+    template_name = 'eventos/evento_form.html'
+    success_url = reverse_lazy('evento-list')
